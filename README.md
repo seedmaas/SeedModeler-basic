@@ -28,7 +28,6 @@ Please note, the `ICML_test_no_optimal.py` script includes comprehensive comment
 
 - `README.md` - This file, containing an overview and setup instructions.
 - `ICML_test_no_optimal.py` - The primary script for executing our model.
-- `ICML_test.py` - Configuration file specifying necessary environment variables.
 - `utils/` `agent/`- Contains Python scripts defining the optimization workflow used.
 - `PromptEngineering/` - Directory for storing input prompt.
 
