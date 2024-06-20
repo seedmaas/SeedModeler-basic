@@ -1,0 +1,103 @@
+You need to generate corresponding Python code to solve the linear programming mathematical problem provided, and you must use the pulp library to solve the model. Please comment the output code with ```python```.
+The necessary steps and corresponding examples are below. Please perform the following in order, replacing the corresponding variable names with the actual numerical steps in the question:
+Please ensure that your Python code can execute smoothly based on understanding the overall algorithm flow. Only output python code.
+Step 1: Import library 
+```python 
+from pulp import *
+```
+Step 2: Define decision variables, eg:
+```python 
+x = LpVariable("x", lowBound=0,upBound=None, cat="Integer") # cat can be "Integer" or "Continuous"
+```
+Step 3: Define the LpMaximize or LpMinimize problem, eg:
+```python 
+problem = LpProblem("MyProblem", LpMaximize)
+```
+Step 4: Define the objective function, eg:  
+```python 
+objective = x * 1 / 3 + 3 * y 
+problem += objective
+```
+Note:Represent division by multiplying the reciprocal of a number
+Step 5: Add constraints, eg: 
+```python 
+problem += x  + y * 1/2 <= 20
+```
+Step 6: Solve the problem, 
+```python 
+status = problem.solve()
+```
+Step 7: Output results
+```python 
+for variable in problem.variables():
+        print(variable.name, "=", variable.varValue)
+    print("Objective =", objective.value())
+```
+an example of LP question and output are as follows：
+LP question: |
+    decision Variables
+      num_ads_malls: Integer. Number of advertisements placed in malls.
+      num_ads_bus_stops: Integer. Number of advertisements placed at bus stops.
+      num_ads_theatres: Integer. Number of advertisements placed in theatres.
+
+    parameters:
+      WeeklyAdvertisingBudget: $30000
+      CostPerAd
+        CostPerAd_Malls: $5000 per ad
+        CostPerAd_Bus_Stops: $1000 per ad
+        CostPerAd_Theatres: $3000 per ad
+      AudienceReachPerAd
+        AudienceReachPerAd_Malls: 50000 per ad
+        AudienceReachPerAd_Bus_Stops: 10000 per ad
+        AudienceReachPerAd_Theatres: 20000 per ad
+
+    problem:  Maximize TotalViewership
+    objective:  num_ads_malls*AudienceReachPerAd_Malls + num_ads_bus_stops*AudienceReachPerAd_Bus_Stops + num_ads_theatres*AudienceReachPerAd_Theatres
+
+    constraints:
+      Total Cost of Ads: The total cost must not exceed the weekly advertising budget of $30,000.
+        (num_ads_bus_stops*CostPerAd_Bus_Stops + num_ads_malls*CostPerAd_Malls + num_ads_theatres*CostPerAd_Theatres) <= WeeklyAdvertisingBudget(30000)
+      Bus Stop Ad Limit: num_ads_bus_stops at bus stops should not exceed 20
+        num_ads_bus_stops <= 20
+      Theatre Ad Ratio: num_ads_theatres must not exceed one-third of the total number of advertisements.
+        num_ads_theatres <= 1/3 \times (num_ads_bus_stops+num_ads_theatres+num_ads_malls)
+      Mall Ad Ratio: At least 20% of the ads should be placed in malls.
+        num_ads_malls >= 20% \times (num_ads_bus_stops+num_ads_theatres+num_ads_malls)
+
+output: 
+    # Import PuLP library
+    from pulp import *
+
+    # Define the decision variables
+    # number of ads in malls
+    num_ads_malls = LpVariable("NumAdsMalls", lowBound=0, cat="Integer") 
+    # number of ads at bus stops
+    num_ads_bus_stops = LpVariable("NumAdsBusStops", lowBound=0, upBound=20, cat="Integer") 
+    # number of ads in theatresn
+    num_ads_theatres = LpVariable("NumAdsTheatres", lowBound=0, cat="Integer") 
+
+    # Define the question as a Maximize or Minimize problemn
+    problem = LpProblem("MaximizeViewership", LpMaximize) 
+
+    # Define the objective function
+    objective = 50000 * num_ads_malls + 10000 * num_ads_bus_stops + 20000 * num_ads_theatres
+
+    problem += objective 
+
+    # Define the constraintsn
+    # Total Cost of Ads
+    problem += 5000 * num_ads_malls + 1000 * num_ads_bus_stops + 3000 * num_ads_theatres <= 30000 
+    # Theatre Ad Ratio
+    problem += num_ads_theatres <= (num_ads_malls + num_ads_bus_stops + num_ads_theatres) * 1/ 3 
+    # Mall Ad Ratio
+    problem += num_ads_malls >= 0.2 * (num_ads_malls + num_ads_bus_stops + num_ads_theatres) 
+
+    # Solve the problemn
+    status = problem.solve()
+
+    # Output the answer
+    for variable in problem.variables():
+      print(variable.name, "=", variable.varValue)
+    print("objective =", objective.value())
+
+the lp question you need to process is as follows:
