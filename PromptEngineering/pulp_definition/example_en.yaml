@@ -1,0 +1,23 @@
+- question: |
+    A film production company wants to advertise the release of their new movie using ads in three areas: malls, bus stops, and theatres. They have a weekly advertising budget of $30000. The cost of an ad in each area and their audience reach is given. An ad in a mall costs $5000 and reaches 50000 viewers. An ad at a bus stop costs $1000 and reaches 10000 viewers. An ad in a theatre costs $3000 and reaches 20000 viewers. The city limits the number of ads at a bus stop from a single company to 20. In order to maintain balance, at most a third of the total number of ads should be in theatres and a minimum of 20% of ads should be in malls. How many ads should be run in each of the three areas in order to maximize viewership?",
+  key: |
+    ["The_number_of_ads_in_malls", "The_number_of_ads_at_bus_stops", "The_number_of_ads_in_theatres","The_number_of_viewers_reached"]
+  definition: |
+    problem: The_number_of_viewers_reached  Maximize
+    
+    decision Variables:
+      The_number_of_ads_in_malls: (Integer)
+      The_number_of_ads_at_bus_stops: (Integer)
+      The_number_of_ads_in_theatres: (Integer)
+
+    The_number_of_viewers_reached = The_number_of_ads_in_malls*50000 + The_number_of_ads_at_bus_stops*10000 + The_number_of_ads_in_theatres*20000
+
+    constraints:
+      The total cost must not exceed the weekly advertising budget of $30,000:
+        (The_number_of_ads_at_bus_stops*1000 + The_number_of_ads_in_malls*5000 + The_number_of_ads_in_theatres*3000) <= 30000
+      The_number_of_ads_at_bus_stops at bus stops should not exceed 20:
+        The_number_of_ads_at_bus_stops <= 20
+      The_number_of_ads_in_theatres must not exceed one-third of the total number of advertisements:
+        The_number_of_ads_in_theatres <= 1/3 \times (The_number_of_ads_at_bus_stops+The_number_of_ads_in_theatres+The_number_of_ads_in_malls)
+      At least 20% of the ads should be placed in malls:
+        The_number_of_ads_in_malls >= 20% \times (The_number_of_ads_at_bus_stops+The_number_of_ads_in_theatres+The_number_of_ads_in_malls)

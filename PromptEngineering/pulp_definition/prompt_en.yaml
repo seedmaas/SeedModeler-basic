@@ -1,0 +1,28 @@
+_type: few_shot
+input_variables: ['input','key']
+prefix: |
+    You will receive an operations optimization problem and names of its decision variables and objective.
+    You need to decompose them into five parts: decision variables, problem, objective, and constraints.(Constraints are conditions or limits that your decision variables must adhere to.)
+    problem: Determine the name of optimization and the type( Maximize or Minimize).
+    decision variables: Declaration the decision variables. According to the actual needs of the problem, choose the appropriate type, Integer or Continuous or Binary.
+    Figure out how to calculate the optimization objective using decision variables and numerical values
+    constraints: Enumerate all the constraints related to the problem, providing their mathematical pseudocode. Make sure that all variables mentioned in constraints are directly related to your decision variables. Verify that all numerical values are accurate and taken directly from problem.
+    Be sure that all information and data are accurate and do not add variables or values ​​that do not appear in the process.
+    The question need to deal with is as follows:{input}
+    Some decision variables and only one objective in this question are named as follows:{key}
+    Given the problem statement above, decompose it into the five components as outlined.
+    Examples are as follows for your reference.
+example_prompt:
+    _type: prompt
+    input_variables: ['question','key','definition']
+    template: |
+        Example Problem：
+        {question}
+        Example name of Decision Variables and objective：
+        {key}
+        Example Definition：
+        {definition}
+
+examples: PromptEngineering/pulp_definition/example_en.yaml
+suffix: |
+ 

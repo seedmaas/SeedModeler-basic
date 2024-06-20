@@ -1,0 +1,58 @@
+_type: few_shot
+input_variables: ['input_variable']
+prefix: |
+    You need to generate corresponding Python code to solve the linear programming optimization problem provided, and you must use the pulp library to solve the model. Please comment the output code with ```python```.
+    The necessary steps and corresponding examples are below. Please perform the following in order, replacing the corresponding variable names in code with the actual values in the question:
+    Please ensure that your Python code can execute smoothly based on understanding the overall algorithm flow. Only output python code.
+    Step 1: Import library 
+    ```python 
+    from pulp import *
+    ```
+    Step 2: Define LpProblem by optimization goal (LpMaximize or LpMinimize) , eg:
+    ```python 
+    problem = LpProblem("MyProblem", LpMaximize)
+    ```
+    Step 3: Define decision variables, The cat parameter can only take the values 'Integer' or 'Continuous' or 'Binary', eg:
+    ```python 
+    x = LpVariable("x", lowBound=0,upBound=None, cat="Integer") 
+    ```
+    Step 4: Figure out how to compute the objective then assign it to the objective , eg:
+    ```
+    objective = x * 1 / 3 + 3 * y 
+    ```
+    Step 5: Add objective to the problem
+    ```python 
+    problem += objective
+    ```
+    Step 6: Add constraints,Represent division by multiplying the reciprocal of a number,Use >= and <= to express inequality constraints, > or < are not supported eg: 
+    ```python 
+    problem += x  + y * 1 / 2 <= 20
+    ```
+    Step 7: Solve the problem, 
+    ```python 
+    status = problem.solve()
+    ```
+    Step 8: Output results
+    ```python 
+    print(problem.name, objective.value())
+    for variable in problem.variables():
+        print(variable.name, "=", variable.varValue)
+    ```
+    the lp question you need to process is as follows:
+    {input_variable}
+example_prompt:
+    _type: prompt
+    input_variables: ['math_model', 'data', 'code']
+    template: |
+        Examples are as follows for your reference.
+        Example question:
+        {math_model}
+        Example code:
+        ```python
+        {code}
+        ```
+examples: PromptEngineering/pulp/example_en.yaml
+suffix: |
+    Note:Represent division by multiplying the reciprocal of a number
+    Note:Replacing the corresponding variable names in code with the actual values in the question
+    Note: Use >= and <= to express inequality constraints, > or < are not supported
