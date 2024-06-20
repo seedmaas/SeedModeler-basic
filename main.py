@@ -268,7 +268,7 @@ def wrap_values_with_string(data):
 
 if __name__ == '__main__':
 
-    file_path = 'docs/ICML/task3_test_public.json'
+    file_path = 'task3_test_public.json'
     batch_size = 25  # 设置每批次处理的大小
     batches_saved = 0  # 用于计算和记录保存的批次数量
     with open(file_path, "r") as f:
@@ -281,7 +281,7 @@ if __name__ == '__main__':
             print(f"处理到 Processing item {id}")
             question = item["question"]
             data_example = item["results"]
-            file_name = f"output_json/test_gpt4_no_optimal/{id}.json"
+            file_name = f"output_json/{id}.json"
             
             # 将item保存到文件中
             with open(file_name, 'w', encoding='utf-8') as f:
