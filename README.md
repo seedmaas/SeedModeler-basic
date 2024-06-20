@@ -4,7 +4,7 @@ Welcome to the official code repository for our submission to the ICML 2024 Chal
 
 ## Overview
 
-This repository contains the Python code and associated documentation necessary to understand and replicate our successful approach to the competition's challenges. Our solution leverages advanced algorithms and mathematical frameworks to automatically generate and solve optimization problems, pushing the boundaries of automated mathematical reasoning.
+Our solution, which expertly uses advanced algorithms and mathematical frameworks to automatically generate and solve optimization problems, thus advancing automated mathematical reasoning, has achieved a remarkable score of 0.9121 on the test dataset.
 
 
 ## Getting Started
@@ -65,8 +65,6 @@ Once all the above steps are completed, you can run the `main.py` file with the 
 python main.py
 ```
 ---
-
-Please note, the `ICML_test_no_optimal.py` script includes comprehensive comments and instructions on usage and customization options.
 
 ## Repository Structure
 
