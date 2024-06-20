@@ -55,7 +55,7 @@ This project requires specific environment variables to be set for correct opera
 
 5. **Place Data Files**
 
-Ensure your data files (in .json format) are placed within the project's `doc` directory. These files are essential for the project's execution.
+Ensure your data files (in .json format) are placed within the project's directory. These files are essential for the project's execution.
 
 ## Running the Project
 
