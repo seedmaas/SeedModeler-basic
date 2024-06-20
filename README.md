@@ -1,4 +1,4 @@
-# Automatic Modeling - ICML 2024 AutoMath Challenge Submission
+# Automatic Modeling : Automated Optimization Code Solutions for ICML 2024
 
 Welcome to the official code repository for our submission to the ICML 2024 Challenges on Automated Math Reasoning, specifically for Track 3: Automated Optimization Problem-Solving with Code.
 
