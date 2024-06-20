@@ -1,5 +1,6 @@
 python-dotenv
 requests
+pulp
 wikipedia
 langchain                
 langchain-community     
