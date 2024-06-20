@@ -1,4 +1,4 @@
-# README for Automatic Modeling - ICML 2024 AutoMath Challenge Submission
+# Automatic Modeling - ICML 2024 AutoMath Challenge Submission
 
 Welcome to the official code repository for our submission to the ICML 2024 Challenges on Automated Math Reasoning, specifically for Track 3: Automated Optimization Problem-Solving with Code.
 
@@ -45,17 +45,13 @@ pip install -r requirements.txt
 
 4. **Configure OS Environment Variables**
 
-Some environment variables need to be set for the project to run correctly. Configure these variables according to your operating system:
+This project requires specific environment variables to be set for correct operation. Instead of manually setting these variables in your OS, you can configure them by using a `.env` file as a reference. 
 
-- On Unix or MacOS, you can add lines like the following to your `~/.bash_profile` or `~/.bashrc` (whichever is appropriate for your setup):
+- First, locate the `.env.example` file in the project's root directory. This file contains a list of all the necessary environment variables with placeholder values.
+  
+- Create a new file named `.env` in the same directory.
 
-    ```shell
-    export VARIABLE_NAME='value'
-    ```
-
-- On Windows, you can access the Environment Variables editor by searching for "Environment Variables" and add new variables there.
-
-Replace `VARIABLE_NAME` and `value` with the actual names and values of the environment variables needed.
+- Open the `.env.example` file, and for each variable, replace the placeholder values with your actual data. Then, copy these settings into your newly created `.env` file.
 
 5. **Place Data Files**
 
