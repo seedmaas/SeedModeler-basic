@@ -59,7 +59,7 @@ Ensure your data files (in .json format) are placed within the project's `doc` d
 
 ## Running the Project
 
-Once all the above steps are completed, you can run the `ICML_no_optimal.py` file with the following command:
+Once all the above steps are completed, you can run the `main.py` file with the following command:
 
 ```shell
 python main.py
