@@ -62,7 +62,7 @@ Ensure your data files (in .json format) are placed within the project's `doc` d
 Once all the above steps are completed, you can run the `ICML_no_optimal.py` file with the following command:
 
 ```shell
-python ICML_no_optimal.py
+python main.py
 ```
 ---
 
@@ -71,7 +71,7 @@ Please note, the `ICML_test_no_optimal.py` script includes comprehensive comment
 ## Repository Structure
 
 - `README.md` - This file, containing an overview and setup instructions.
-- `ICML_test_no_optimal.py` - The primary script for executing our model.
+- `main.py` - The primary script for executing our model.
 - `utils/` `agent/`- Contains Python scripts defining the optimization workflow used.
 - `PromptEngineering/` - Directory for storing input prompt.
 
