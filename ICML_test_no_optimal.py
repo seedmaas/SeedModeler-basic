@@ -17,10 +17,8 @@ import re
 from langchain_core.prompts import load_prompt
 import os
 import json
-from ICML.keep_result import make_save_run_to_json_code,make_save_run_to_json_definition
-# from pydantic import BaseModel, Field, ValidationError,create_model 转为欧喷爱爱functions
 from langchain_core.output_parsers import JsonOutputParser
-from ICML.agent import Agent
+from agent import Agent
 from json import JSONDecodeError
 from langchain_core.exceptions import OutputParserException
 from utils.tools_no_optimal import tool_fix_bug,tool_execute_code,tool_extract_results
@@ -322,7 +320,7 @@ if __name__ == '__main__':
         # 分批次保存
             
         # 最后保存到文件中
-        final_save_path = file_path.replace('.json', '_0526final.json')
+        final_save_path = file_path.replace('.json', '_final.json')
         with open(final_save_path, "w") as f:
             json.dump(train_data, f, ensure_ascii=False, indent=4)
         print(f'Final data saved to {final_save_path}.') 
