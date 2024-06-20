@@ -1,7 +1,7 @@
 """
 Author: pengyi Zan
-Date: 2024-05-26
-Purpose: 不限制答案是否是Optimal的 可以容许线性松弛解输出 或者其他非optimal的解输出 1.解除optimality的限制 2.允许输出非最优解 其他逻辑与ICML_test一致
+Date: 2024-06-20
+Purpose: 不限制答案是否是Optimal的 可以容许线性松弛解输出 或者其他非optimal的解输出 1.解除optimality的限制 2.允许输出非最优解 
 """
 
 from datetime import datetime 
@@ -191,7 +191,7 @@ def execute_data_and_code_without_error(input_string):
 
     return result
 
-def construct_chain(result_form: dict,question,model_version="gpt-4",save_run_to_json_definition=None,save_run_to_json_code=None):
+def construct_chain(result_form: dict,question,model_version="gpt-4"):
     load_dotenv()
     model = AzureChatOpenAI(
             azure_deployment=os.getenv("AZURE_OPENAI_MODEL"),
@@ -217,8 +217,8 @@ def construct_chain(result_form: dict,question,model_version="gpt-4",save_run_to
     ])
 
     # 定义chain
-    define_model_chain = prompt_pulp_definition | model | StrOutputParser().with_listeners(on_end=save_run_to_json_definition)
-    generate_code_chain=prompt_pulp_code | model | StrOutputParser().with_listeners(on_end=save_run_to_json_code)
+    define_model_chain = prompt_pulp_definition | model | StrOutputParser()
+    generate_code_chain=prompt_pulp_code | model | StrOutputParser()
     execute_code_chain=RunnableLambda(func=execute_data_and_code)
     # generate_code_fallback=prompt_pulp_code | model | StrOutputParser()| RunnableLambda(func=execute_data_and_code_without_error)
 
@@ -276,7 +276,7 @@ if __name__ == '__main__':
     processed_items = []
     log_file_path = "process_log_1.txt"
     with open(log_file_path, "w") as log_file:   
-        for i,item in enumerate(train_data[402:]):
+        for i,item in enumerate(train_data[400:]):
             id = item["id"]                                                                                                                                                                                                                                                   
             print(f"处理到 Processing item {id}")
             question = item["question"]
@@ -286,16 +286,14 @@ if __name__ == '__main__':
             # 将item保存到文件中
             with open(file_name, 'w', encoding='utf-8') as f:
                 json.dump(item, f, ensure_ascii=False, indent=4)
-            save_run_to_json_definition = make_save_run_to_json_definition(file_name)
-            save_run_to_json_code=make_save_run_to_json_code(file_name)
+
             for key in data_example.keys():
                 data_example[key] = ""
 
             full_chain = construct_chain(result_form=data_example,
                                         question=question,
                                         model_version="gpt-4",
-                                        save_run_to_json_definition=save_run_to_json_definition,
-                                        save_run_to_json_code=save_run_to_json_code,)
+                                        )
             keys_with_underscores = [key.replace(" ", "_").replace("'", "_") for key in data_example.keys()]
 
             inference = full_chain.invoke({"input": question,"key":keys_with_underscores})
