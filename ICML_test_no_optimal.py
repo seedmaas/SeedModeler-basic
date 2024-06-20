@@ -194,8 +194,8 @@ def execute_data_and_code_without_error(input_string):
 def construct_chain(result_form: dict,question,model_version="gpt-4",save_run_to_json_definition=None,save_run_to_json_code=None):
     load_dotenv()
     model = AzureChatOpenAI(
-            azure_deployment='gpt-4-32k-0613',
-            api_version="2024-02-01",
+            azure_deployment=os.getenv("AZURE_OPENAI_MODEL"),
+            api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
             api_key=os.getenv("AZURE_OPENAI_KEY"),
             azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
     )
