@@ -6,7 +6,6 @@ Welcome to the official code repository for our submission to the ICML 2024 Chal
 
 This repository contains the Python code and associated documentation necessary to understand and replicate our successful approach to the competition's challenges. Our solution leverages advanced algorithms and mathematical frameworks to automatically generate and solve optimization problems, pushing the boundaries of automated mathematical reasoning.
 
-## Competition Background
 
 ## Getting Started
 
