@@ -268,7 +268,7 @@ def wrap_values_with_string(data):
 
 if __name__ == '__main__':
 
-    file_path = 'task3_test_public.json'
+    file_path = 'test_data.json'
     batch_size = 25  # 设置每批次处理的大小
     batches_saved = 0  # 用于计算和记录保存的批次数量
     with open(file_path, "r") as f:
@@ -276,7 +276,7 @@ if __name__ == '__main__':
     processed_items = []
     log_file_path = "process_log_1.txt"
     with open(log_file_path, "w") as log_file:   
-        for i,item in enumerate(train_data[400:]):
+        for i,item in enumerate(train_data):
             id = item["id"]                                                                                                                                                                                                                                                   
             print(f"处理到 Processing item {id}")
             question = item["question"]
